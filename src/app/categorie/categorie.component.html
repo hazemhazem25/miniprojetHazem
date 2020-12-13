@@ -32,7 +32,7 @@
   </div>
   <div class="row" style="margin-left: 200px;margin-top: 40px">
     <table class="table">
-      <tr><th>Nom</th><th>Action</th></tr>
+      <tr>Id<th>Nom</th><th>Action</th></tr>
       <tr *ngFor="let c of listCategorie |paginate: {itemsPerPage:2,currentPage:p};">
         <td>{{c.id}}</td>
         <td>{{c.nom}}</td>
