@@ -1,0 +1,93 @@
+<br><br><br><br><br><br><br>
+<app-header></app-header>
+<div>
+  <h1 style="margin-left: 100px;margin-right: 100px">Ajouter Produit</h1>
+  <form [formGroup]="form" (ngSubmit)="submit(form.value)" style="margin-left: 100px;margin-right: 100px;margin-bottom: 80px">
+    <div class="form-group">
+      <label>Id</label>
+      <input type="text" formControlName="id" class="form-control" >
+      <div class="alert alert-danger" *ngIf="form.get('id').errors && form.get('id').touched">
+        <div *ngIf="form.get('id').hasError('required')">il faut remplir champ id</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>nom voiture</label>
+      <input class="form-control" formControlName="nom">
+      <div class="alert alert-danger" *ngIf="form.get('nom').errors && form.get('nom').touched">
+        <div *ngIf="form.get('nom').hasError('required')">il faut remplir champ nom</div>
+        <div *ngIf="form.get('nom').hasError('minlength')">nom doit étre superieur a  3 </div>
+        <div *ngIf="form.controls['nom'].hasError('pattern')">nom ne contient pas des chiffres</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>description</label>
+      <input type="text" formControlName="description" class="form-control">
+      <div class="alert alert-danger" *ngIf="form.get('description').errors && form.get('description').touched">
+        <div *ngIf="form.get('description').hasError('required')">il faut remplir champ description</div>
+        <div *ngIf="form.get('description').hasError('maxlength')">description' doit étre inferieur a  500 </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Categorie</label>
+      <select class="form-control" id="cars" formControlName="categorie" >
+
+        <option  *ngFor="let c of listCategorie"  value="{{c.nom}}">{{c.nom}}</option>
+
+      </select>
+      <div class="alert alert-danger" *ngIf="form.get('categorie').errors && form.get('categorie').touched">
+        <div *ngIf="form.get('categorie').hasError('required')">il faut remplir champ categorie</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Quantity</label>
+      <input type="number" name="quantity" class="form-control" formControlName="quantity">
+    </div>
+    <div class="alert alert-danger" *ngIf="form.get('quantity').errors && form.get('quantity').touched">
+      <div *ngIf="form.get('quantity').hasError('required')">il faut remplir champ quantity
+    </div>
+    </div>
+    <div class="alert alert-danger" *ngIf="form.get('quantity').value<0 ">
+      quantity>0
+    </div>
+    <div class="form-group">
+      <label>Price</label>
+      <input type="number" name="price" class="form-control" formControlName="prix" >
+    </div>
+    <div class="alert alert-danger" *ngIf="form.get('prix').errors && form.get('prix').touched">
+      <div *ngIf="form.get('prix').hasError('required')">il faut remplir champ prix
+      </div>
+    </div>
+    <div class="form-group">
+      <label>image</label>
+      <input class="form-control" id="file" type="file" formControlName="image" (change)="onFileChange($event)">
+      <div class="alert alert-danger" *ngIf="form.get('image').errors && form.get('image').touched">
+        <div *ngIf="form.get('image').hasError('required')">il faut remplir champ image</div>
+      </div>
+    </div>
+    <img [src]="imageSrc" *ngIf="imageSrc" style="height: 100px; width:100px">
+
+
+    <button type="submit" class="btn btn-success" >{{val}}</button>
+  </form>
+</div>
+<h1 style="margin-left: 100px;margin-right: 100px">Les Produit</h1>
+<div style="margin-left: 100px;margin-right: 100px;margin-bottom: 80px;margin-top: 50px">
+<table class="table">
+  <tr><th>id</th><th>Nom</th><th>description</th><th>Categorie</th><th>Quantity</th><th>Price</th><th>image</th><th>Action</th></tr>
+  <tr *ngFor="let e of listVoiture">
+    <td>{{e.id}}</td>
+    <td>{{e.nom}}</td>
+    <td>{{e.description}}</td>
+    <td>{{e.categorie}}</td>
+    <td>{{e.quantity}}</td>
+    <td>{{e.prix}}</td>
+    <td>
+      <img src="{{e.fileSource}}" style="height: 100px; width:100px"/></td>
+    <td><button class="btn btn-dark" style="margin-bottom: 5px" (click)="deleteE(e.id)">Delete</button><br>
+      <button class="btn btn-dark" (click)="update(e)">Update</button></td>
+
+  </tr>
+</table>
+</div>
+<app-footer></app-footer>

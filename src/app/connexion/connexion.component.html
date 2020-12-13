@@ -1,0 +1,31 @@
+<br><br><br><br><br><br><br><br>
+<div class="row" style="margin-left: 100px">
+  <div class="col-sm-8 col-sm-offset-2">
+    <h2>Se Connecter</h2>
+    <form [formGroup]="signinForm" (ngSubmit)="onSubmit()" >
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input class="form-control" id="email" type="text" formControlName="email">
+      </div>
+      <div class="alert alert-danger" *ngIf="signinForm.get('email').errors && signinForm.get('email').touched">
+        <div *ngIf="signinForm.get('email').hasError('required')">il faut remplir champ email
+        </div>
+        <div *ngIf="signinForm.get('email').hasError('pattern')">email doit contenir comme exemple: exemple@exemplehd.tn
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input class="form-control" id="password" type="password" formControlName="password">
+      </div>
+      <div class="alert alert-danger" *ngIf="signinForm.get('password').errors && signinForm.get('password').touched">
+        <div *ngIf="signinForm.get('password').hasError('required')">il faut remplir champ password
+        </div>
+        <div *ngIf="signinForm.get('password').hasError('pattern')">password doit contenir plus que 6 caractéres
+        </div>
+      </div>
+      <button class="btn btn-success" type="submit" [disabled]="signinForm.invalid">Connecter</button>
+
+    </form>
+    <p class="text-danger">{{errorMessage}}</p>
+  </div>
+</div>

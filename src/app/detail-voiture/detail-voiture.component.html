@@ -1,0 +1,31 @@
+<app-header></app-header>
+<br><br><br><br>
+<section id="about" style="margin-left: 40px">
+  <div class="container">
+
+
+<div class="row">
+    <div class="row">
+      <div class="col-md-3" style="margin-left: 50px">
+        <div class="card" style=" width: 18rem;">
+
+          <div class="card-body">
+            <h3>{{voiture.nom}}</h3>
+            <p>{{voiture.description}} .</p>
+            <h6>Prix:{{voiture.prix}}</h6>
+            <h6>Quantity:{{voiture.quantity}}</h6>
+          </div>
+        </div>
+      </div>
+      </div>
+    <div class="row">
+      <div class="col-md-3" style="margin-left: 50px">
+        <div class="card" style=" width: 18rem;">
+          <img src="{{voiture.fileSource}}" class="card-img-top" alt="...">
+        </div>
+      </div>
+    </div>
+</div>
+  </div>
+</section><!-- #about -->
+<app-footer></app-footer>

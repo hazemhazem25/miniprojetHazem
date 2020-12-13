@@ -1,0 +1,17 @@
+<div class="col-md-3" style="margin-left: 50px" *ngIf="voiture.prix == priceInput || priceInput== null
+                                                   || voiture.nom == nomInput || nomInput== null "
+                                                     >
+  <div class="card" style=" width: 18rem;"
+       [ngStyle]="{'background-color':getColor()}">
+    <img src="{{voiture.fileSource}}" class="card-img-top" alt="..." style="height: 250px">
+    <div class="card-body">
+      <h5 class="card-title"> {{voiture.nom}} </h5>
+      <p class="card-text"> {{voiture.description}} </p>
+      <a  [routerLink]="['detail',voiture.id]">detail</a>
+
+      <button class="btn btn-success" (click)="sendNotif()" style="float: right">
+        {{voiture.like}} -- like<3
+      </button>
+    </div>
+  </div>
+</div>
